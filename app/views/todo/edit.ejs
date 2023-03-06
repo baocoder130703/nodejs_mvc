@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>edit</h2>
+    <%if(typeof status !== 'undefined'){%>
+        <%if(status =='success'){ %>
+            <div style="color:green;">
+                update successfully
+            </div>
+        <%} else{%>
+            <div style="color: red;">
+                some err occurred while editing the todo
+            </div>
+        <%}%>
+        <br>
+    <%}%>
+
+    <form action="/todo/<%= todo.id %>" method="post">
+        <input type="hidden" name="_method" value="put">
+        <label for="title" >title</label>
+        <input type="text" id="title" name="title" value="<%= todo.title%>">
+        <br>
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" value="<%= todo.description%>" >
+        <br>
+        <!-- gia trị đưa lên khác nên phải code thêm 1 xíu ở bên file todo,controller -->
+        <label for="published"> published</label>
+        <input type="checkbox" name="published" id="published" <% if (todo.published) { %> checked <% } %>>
+    
+        <br>
+        <input type="submit" name="" id="" value="submit">
+    </form>
+</body>
+</html>
